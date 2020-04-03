@@ -35,14 +35,14 @@ Enter encoder-decoder network
 
 As we have seen in the previous section that decoding the whole output sequence from a single fixed-length vector can be problematic, we can provide more info/context about all hiddens states by taking dynamically weighted average of all the hidden states of the encoder, in the following manner known as "attention":
 
-Assume that, $h_{1}, h_{2}, h_{3},..., h_{T}$ are the hidden states of the encoder layer.
+Assume that, $(h_{1}, h_{2}, h_{3},..., h_{T})$ are the hidden states of the encoder layer.
 
-Let the decoder layer be a generic function, $P(y_{i} \mid y_1, y_2..., \textbf{x}) = f(y_{i-1}, c_i, s_i)$ 
+Let the decoder layer be a generic function, $y_{i}) = f(y_{i-1}, c_i, s_i)$ 
 
-where $s_i$ is the current hidden state of the decoder, $c_i$ is the dynamic context vector. More info on these below.
+where $s_i$ is the current hidden state of the decoder, $c_i$ is the dynamic context vector. The dynamic context vector $c_i$ is the (learnable) weighted average of all the encoder hidden states as described below:
 
 
-$c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j$.
+\centerline($c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j$.)
 
 $\alpha_{ij}$ are weight of each hidden state $h_j$ and are given by equation
 
