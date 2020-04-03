@@ -48,6 +48,8 @@ $\alpha_{ij}$ are weight of each hidden state $h_j$ and are given by equation
 
 $\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_ik)}$
 
+where $e_{ij} = a(s_{i-1}, h_j)$ where a is an alignment model.
+
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
