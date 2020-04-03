@@ -37,7 +37,7 @@ As we have seen in the previous section that decoding the whole output sequence 
 
 Assume that, $h_{1}, h_{2}, h_{3},..., h_{T}$ are the hidden states of the encoder layer.
 
-Let the decoder layer be a generic function, $P(y_{i}|y_1, y_2..., \textbf{x}) = f(y_{i-1}, c_i, s_i)$ 
+Let the decoder layer be a generic function, $P(y_{i} \mid y_1, y_2..., \textbf{x}) = f(y_{i-1}, c_i, s_i)$ 
 
 where $s_i$ is the current hidden state of the decoder, $c_i$ is the dynamic context vector. More info on these below.
 
