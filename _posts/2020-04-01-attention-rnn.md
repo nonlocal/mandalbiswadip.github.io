@@ -29,7 +29,28 @@ Enter encoder-decoder network
 
 ## NMT or seq2seq in general
 
+1) seq2seq, 2) bottleneck
+
 ## Leaning to align and translate : attention
+
+As we have seen in the previous section that decoding the whole output sequence from a single fixed-length vector can be problematic, we can provide more info/context about all hiddens states by taking dynamically weighted average of all the hidden states of the encoder, in the following manner known as "attention":
+
+Assume that, $h_{1}, h_{2}, h_{3},..., h_{T}$ are the hidden states of the encoder layer.
+
+Let the decoder layer be a generic function, $P(y_{i}|y_1, y_2..., \textbf{x}) = f(y_{i-1}, c_i, s_i)$ 
+
+where $s_i$ is the current hidden state of the decoder, $c_i$ is the dynamic context vector. More info on these below.
+
+
+$c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j$.
+
+$\alpha_{ij}$ are weight of each hidden state $h_j$ and are given by equation
+
+$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_ik)}$
+
+
+
+what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
 
 ## Experiment
 
