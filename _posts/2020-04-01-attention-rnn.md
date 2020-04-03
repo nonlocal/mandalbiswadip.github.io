@@ -42,8 +42,9 @@ Let the decoder layer be a generic function, $y_{i}) = f(y_{i-1}, c_i, s_i)$
 where $s_i$ is the current hidden state of the decoder, $c_i$ is the dynamic context vector. The dynamic context vector $c_i$ is the (learnable) weighted average of all the encoder hidden states as described below:
 
 
-$\centerline(c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j.)$
-
+\begin{equation} 
+c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j.
+\end{equation}
 $\alpha_{ij}$ are weight of each hidden state $h_j$ and are given by equation
 
 $\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_ik)}$
