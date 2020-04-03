@@ -9,7 +9,7 @@ Review of the Attention paper.
 
   1. what is attention
   2. Why attention
-  3. Why is it better than LSTM
+  3. Why is it better than RNN
   4. Is attention the go-to architecture for seq2seq models
   5. What attention can't do
   6. Where, when, how
