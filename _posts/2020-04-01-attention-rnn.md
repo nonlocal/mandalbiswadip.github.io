@@ -71,7 +71,7 @@ The function $a$ here is an alignment model.
 
 One can think of $e_{ij}$ as the unnormalized weight given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at ith step. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
 
-Let's take the context of Machine Translation from English to Spanish. Let's say we have one input sentence in `en` and one output sentence in `es`. If we are trying to translate the given input sentence, $e_{ij}$, and in turn $a_{ij}$, will tell us which words in the given input sentence are important for predicting the $i^{th}$ word in output sentence. The alignment model will learn to calculate the weights or importance from $s_{i-1}$ and $h_{j}$.
+Let's take an example of Machine Translation from English to Spanish. Let's say we have one input sentence in `en` and the corresponding output sentence in `es`. If we are trying to translate the given input sentence, $e_{ij}$, and in turn $a_{ij}$, will tell us which words in the given input sentence are important for predicting the $i^{th}$ word in output sentence. The alignment model will learn to calculate the weights or importance from $s_{i-1}$ and $h_{j}$.
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
