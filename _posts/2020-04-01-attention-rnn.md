@@ -69,7 +69,9 @@ e_{ij} = a(s_{i-1}, h_j)
 
 The function $a$ here is an alignment model. 
 
-$e_{ij}$ is unnormalized weight for $h_j$ in the linear combination of all hidden states to obtain a context vector. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+One can think of $e_{ij}$ as the unnormalized weight given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at ith step. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+
+Let's take the context of Machine Translation. If we are trying to translate english-spanish, $e_{ij} (and in turn $a_{ij}) will tell us which words in english are important for predicting the ith word in spanish. The alignment model will learn to calculate the weights or importance from $s_{i-1} and $h_{j}.
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
