@@ -67,8 +67,9 @@ where
 e_{ij} = a(s_{i-1}, h_j)
 \end{equation} 
 
-The function $a$ here is an alignment model.
+The function $a$ here is an alignment model. 
 
+$e_{ij}$ is unnormalized weight for $h_j$ in the linear combination of all hidden states to obtain a context vector. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
