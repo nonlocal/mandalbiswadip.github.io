@@ -54,7 +54,8 @@ The dynamic context vector $c_i$ is the (learnable) weighted average of all the 
 \begin{equation} 
 c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j.
 \end{equation}
-$\alpha_{ij}$ are weight of each hidden state $h_j$ and are given by equation
+
+where $\alpha_{ij}$ are weightss of each hidden state $h_j$ and are given by equation
 
 \begin{equation} 
 \alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_ik)}
@@ -65,7 +66,7 @@ where
 e_{ij} = a(s_{i-1}, h_j)
 \end{equation} 
 
-where a is an alignment model.
+The function $a$ here is an alignment model.
 
 
 
