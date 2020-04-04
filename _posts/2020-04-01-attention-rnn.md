@@ -44,12 +44,13 @@ y_{i} = f(y_{i-1}, c_i, s_i)
 \end{equation} 
 
 where 
-
-  1. $s_i$ is the current hidden state of the decoder,
-  2. $c_i$ is the dynamic context vector. 
+  
+  1. y_{i-1} is the last predicted output by the decoder,
+  2. $s_i$ is the current hidden state of the decoder,
+  3. $c_i$ is the dynamic context vector.
   
 
-The dynamic context vector $c_i$ is the (learnable) weighted average of all the encoder hidden states as described below:
+The dynamic context vector $c_i$ is a (learnable) weighted average of all the encoder hidden states as described below:
 
 \begin{equation} 
 c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j.
