@@ -45,7 +45,7 @@ y_{i} = f(y_{i-1}, c_i, s_i)
 
 where 
   
-  1. y_{i-1} is the last predicted output by the decoder,
+  1. $y_{i-1} is the last predicted output by the decoder,
   2. $s_i$ is the current hidden state of the decoder,
   3. $c_i$ is the dynamic context vector.
   
@@ -72,6 +72,16 @@ The function $a$ here is an alignment model.
 One can think of $e_{ij}$ as the unnormalized weight given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at ith step. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
 
 Let's take an example of Machine Translation from English to Spanish. Let's say we have one input sentence in `en` and the corresponding output sentence in `es`. If we are trying to translate the given input sentence, $e_{ij}$, and in turn $a_{ij}$, will tell us how much the $j_{th}$ input word is important for predicting the $i^{th}$ word in output sentence. The alignment model will learn to calculate the weights or importance from $(i-1)^{th}$ output word and $j^{th}$ input word.
+
+What can be ideal alignment models. What should be it's properties??
+
+Advantages:
+
+As mentioned above, encoding the whole input sentence in a fixed length vector can be problematic and attention helps avoiding that by giving direct access to each step of the encoder through context vectors. 
+
+Disadvantages:
+
+More number of trainable weights. Additional number of weights would be $n_{hidden_encoder} + $n_{hidden_decoder} 
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
