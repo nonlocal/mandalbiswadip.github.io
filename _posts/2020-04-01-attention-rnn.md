@@ -73,7 +73,7 @@ One can think of $e_{ij}$ as the unnormalized weight/score given to $h_j$ while 
 
 Let's take a closer look at the (self) attention/alignment model in the below diagram:
 
-![attention mechanism](/images/attention_mechanism.jpg) <!-- .element height="50%" width="50%" -->
+![attention mechanism](/images/attention_scaled_down.jpg)
 *Figure 1: Self-attention mechanism to calculate context vector for the first sequence element.*
 
 1. We have a sequence of inputs $(x_1, x_2, x_3, ..., x_n)$ and an initial hidden state $h_0$ that are consumed by the RNN model one-by-one producing corresponding hidden states $(h_1, h_2, h_3, ..., h_n)$. This is shown in the bottom part of the image
