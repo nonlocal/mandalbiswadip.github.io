@@ -104,7 +104,7 @@ Now, how does it apply to seq2seq models, MT, in particular?
 
 For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $s1$, then we would get the same attention model described in the paper. -->
 
-### Detailed Explanation of Attention for MT
+### Detailed Explanation of Attention for NMT
 
 We have input sequence $(x_1, x_2, x_3, ..., x_n)$ and their corresponding encoder hidden states be $(h_1, h_2, h_3, ..., h_n)$. Let $s_i$ be the _decoder_ hidden state at $i^{th}$ decoding step. Then the context vector $c_i$ that will be used to predict the word $y_i$ is given by:
 1. $e_{ij} = f(s_i, h_j)$, here $h_j$ is the encoder hidden state of the $j^{th}$ sequence input, $s_i$ is the decoder hidden state at the $i^{th}$ decoding step.
