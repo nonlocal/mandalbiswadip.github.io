@@ -1,6 +1,5 @@
 # Attention Mechanisms in Deep Learning
 
-Review of the Attention paper.
 
 1. TOC
 {:toc}
@@ -20,6 +19,24 @@ Review of the Attention paper.
   
 
 ## Introduction
+
+In this blog, we will review the original attention mechanism as published in [Bahdanau et. al.](https://arxiv.org/pdf/1409.0473.pdf) and we will also give another example of attention known as "self-attention".
+
+Let's first start with some background on where attention mechanism is ususally used -- seq2seq models. One classic example of seq2seq model is neural machine translation. Let's review it.
+
+### Neural Machine Translation
+Neural machine translation has two components:
+
+1. Encoder: The encoder, usually an RNN or multi-layered RNNs, is used to encode the source language sentence into a fixed-lenght vector, which is the last hidden state of the RNN for a given input sequence. 
+
+2. Decoder: The decoder takes in the last encoder hidden state as input and tries to predict each word in the target language (in an autoregressive way, meaning the last predicted word is used to predict the current word.)
+
+The bottleneck with such a system is that the decoder has to predict the _entire_ sentence in the target language with only the last-encoder-hidden-state. This limits the capacity of the decoder to predict/output long sentences in the target language.
+
+What if there was a way to supplement the last-encoder-hidden-state with some more information to make the task of decoding a little bit easier? Enter attention!!
+
+
+
 
 
 Why is this different/better than tranditional translation systems? 1. end-to-end framework 2. don't need to train modules to handle different settings/contexts/conditions.
