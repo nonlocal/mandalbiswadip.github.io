@@ -39,23 +39,9 @@ What if there was a way to supplement the last-encoder-hidden-state with some mo
 
 
 
+## Learning to Align and Translate : The Attention Model
 
-
-Why is this different/better than tranditional translation systems? 1. end-to-end framework 2. don't need to train modules to handle different settings/contexts/conditions.
-
-Enter encoder-decoder network
-
-
-
-## NMT or seq2seq in general
-
-Traditional language tran
-
-1) seq2seq, 2) bottleneck
-
-## Leaning to align and translate : attention
-
-As we have seen in the previous section that decoding the whole output sequence from a single fixed-length vector can be problematic, we can provide more info/context about all hiddens states by taking dynamically weighted average of all the hidden states of the encoder, in the following manner known as "attention":
+We have seen in the previous section that decoding the whole output sequence from a single fixed-length vector can be problematic when the output sequence are long. We can provide more info/context about all the encoder hiddens states by taking dynamically weighted average of all the encoder hidden states, in the following manner, known as "attention":
 
 Assume that, $(h_{1}, h_{2}, h_{3},..., h_{T})$ are the hidden states of the encoder layer.
 
@@ -89,9 +75,13 @@ where
 e_{ij} = a(s_{i-1}, h_j)
 \end{equation} 
 
-The function $a$ here is an alignment model. 
+The function $a$ here is an "attention" model. 
 
-One can think of $e_{ij}$ as the unnormalized weight/score given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at $i^{th}$ step. So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+One can think of $e_{ij}$ as the unnormalized weight/score given to the encoder hidden state $h_j$ while calculating the linear combination of all hidden states to obtain a context vector $c_i$. The context vector is further used to obtain the decoder output at $i^{th}$ step. 
+
+So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+
+
 
 ## Attention Layer
 
