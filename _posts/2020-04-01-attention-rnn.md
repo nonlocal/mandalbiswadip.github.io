@@ -100,8 +100,13 @@ We have input sequence $(x_1, x_2, x_3, ..., x_n)$ and their corresponding encod
 3. These $e_{ij}$ are unnormalized scores/weights. Apply softmat to get normalized scores/weights: $a_{ij} = \frac{e_{ij}}{\sum_{j=1}^{T_{n}}e_{ij}}$.
 4. To calculate the context vector $c_i$ for the $i^{th}$ decoding step, with take average of encoder hidden states with $a_{ij}$ as weights: $c_i = \sum_{j=1}^{T_n} a_{ij}h_j$.
 
+Now with context vector $c_i$, decoder hidden state $s_i$ and last predicted word $y_{i-1}$, the decoder will predict the next word $y_i$ as per following expression: 
 
+\begin{equation}
+y_i = g(y_{i-1}, s_i, c_i)
+\end{equation}
 
+This is the alignment/attention model as described in the paper.
 
 Let's take an example of Machine Translation from English to Spanish. Let's say we have one input sentence in `en` and the corresponding output sentence in `es`. If we are trying to translate the given input sentence, $e_{ij}$, and in turn $a_{ij}$, will tell us how much the $j_{th}$ input word is important for predicting the $i^{th}$ word in output sentence. The alignment model will learn to calculate the weights or importance from $(i-1)^{th}$ output word and $j^{th}$ input word.
 
