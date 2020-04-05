@@ -87,7 +87,7 @@ As mentioned above, encoding the whole input sentence in a fixed length vector c
 
 Disadvantages:
 
-More number of trainable weights. Additional number of weights would be $ attention\textunderscore size * ({decoder\textunderscore hidden\textunderscore units} + {encoder\textunderscore hidden\textunderscore units}) )$.
+More number of trainable weights. Additional number of weights would be $ attention\_size * ({decoder\_hidden\_units} + {encoder\_hidden\_units}) )$.
 
 
 what is does mathematically, graphical representation, how does it help in providing relevant context at the current decoding step, 
