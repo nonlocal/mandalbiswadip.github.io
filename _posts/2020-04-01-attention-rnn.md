@@ -31,9 +31,11 @@ Neural machine translation has two components:
 
 2. Decoder: The decoder takes in the last encoder hidden state as input and tries to predict each word in the target language (in an autoregressive way, meaning the last predicted word is used to predict the current word.)
 
-The bottleneck with such a system is that the decoder has to predict the _entire_ sentence in the target language with only the last-encoder-hidden-state. This limits the capacity of the decoder to predict/output long sentences in the target language.
+The bottleneck with such a system is that the decoder has to predict the _entire_ sentence in the target language with only the last-encoder-hidden-state as input. This limits the capacity of the decoder to predict/output long sentences in the target language.
 
-What if there was a way to supplement the last-encoder-hidden-state with some more information to make the task of decoding a little bit easier? Enter attention!!
+What if there was a way to supplement the last-encoder-hidden-state with some more information to make the task of decoding a little bit easier? 
+
+**Enter attention!!**
 
 
 
