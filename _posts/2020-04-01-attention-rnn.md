@@ -45,7 +45,7 @@ y_{i} = f(y_{i-1}, c_i, s_i)
 
 where 
   
-  1. $y_{i-1} is the last predicted output by the decoder,
+  1. $y_{i-1}$ is the last predicted output by the decoder,
   2. $s_i$ is the current hidden state of the decoder,
   3. $c_i$ is the dynamic context vector.
   
@@ -56,10 +56,10 @@ The dynamic context vector $c_i$ is a (learnable) weighted average of all the en
 c_i = \sum_{j=1}^{T_{x}}\alpha_{ij}h_j.
 \end{equation}
 
-where $\alpha_{ij}$ are weightss of each hidden state $h_j$ and are given by equation
+where $\alpha_{ij}$ is the weight/score of the hidden state $h_j$ and are given by equation:
 
 \begin{equation} 
-\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_ik)}
+\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x}exp(e_{ik})}
 \end{equation}
 
 where
@@ -69,7 +69,13 @@ e_{ij} = a(s_{i-1}, h_j)
 
 The function $a$ here is an alignment model. 
 
-One can think of $e_{ij}$ as the unnormalized weight given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at ith step. So, $a$ is a function which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+One can think of $e_{ij}$ as the unnormalized weight/score given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at $i^{th}$ step. So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
+
+Let's take a closer look at the attention/alignment model in the below diagram:
+
+![attention mechanism](/images/attention_mechanism.jpg)
+
+
 
 Let's take an example of Machine Translation from English to Spanish. Let's say we have one input sentence in `en` and the corresponding output sentence in `es`. If we are trying to translate the given input sentence, $e_{ij}$, and in turn $a_{ij}$, will tell us how much the $j_{th}$ input word is important for predicting the $i^{th}$ word in output sentence. The alignment model will learn to calculate the weights or importance from $(i-1)^{th}$ output word and $j^{th}$ input word.
 
