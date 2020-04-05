@@ -83,7 +83,7 @@ So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage s
 
 
 
-## Attention Layer
+<!-- ## Attention Layer
 
 Let's take a closer look at the (self) attention/alignment model in the below diagram:
 
@@ -102,7 +102,7 @@ This is a generic attention layer that can be put between any two layers where i
 
 Now, how does it apply to seq2seq models, MT, in particular?
 
-For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $s1$, then we would get the same attention model described in the paper.
+For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $s1$, then we would get the same attention model described in the paper. -->
 
 ### Attention for MT
 
