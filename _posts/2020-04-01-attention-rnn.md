@@ -17,6 +17,10 @@
   9. Does it solve larger sequence length issue at prod?
   
   
+## Prerequisites
+You should be able to understand [this image](https://miro.medium.com/max/1400/1*Ismhi-muID5ooWf3ZIQFFg.png) or [this image](https://i.stack.imgur.com/f6DQb.png) or [this image](https://www.guru99.com/images/1/111318_0848_seq2seqSequ4.png).
+
+
 
 ## Introduction
 
