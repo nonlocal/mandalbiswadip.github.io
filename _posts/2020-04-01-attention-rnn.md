@@ -21,6 +21,7 @@ Review of the Attention paper.
 
 ## Introduction
 
+
 Why is this different/better than tranditional translation systems? 1. end-to-end framework 2. don't need to train modules to handle different settings/contexts/conditions.
 
 Enter encoder-decoder network
@@ -28,6 +29,8 @@ Enter encoder-decoder network
 
 
 ## NMT or seq2seq in general
+
+Traditional language tran
 
 1) seq2seq, 2) bottleneck
 
@@ -88,9 +91,9 @@ Let's take a closer look at the (self) attention/alignment model in the below di
 
 This is a generic attention layer that can be put between any two layers where input is in the form of sequenes.
 
-Now, how does it apply to seq2seq models, MT in particular?
+Now, how does it apply to seq2seq models, MT, in particular?
 
-For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $h1$, then we could get the same attention model described in the paper.
+For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $s1$, then we would get the same attention model described in the paper.
 
 ### Attention for MT
 
