@@ -71,9 +71,20 @@ The function $a$ here is an alignment model.
 
 One can think of $e_{ij}$ as the unnormalized weight/score given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at $i^{th}$ step. So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
 
-Let's take a closer look at the attention/alignment model in the below diagram:
+Let's take a closer look at the (self) attention/alignment model in the below diagram:
 
 ![attention mechanism](/images/attention_mechanism.jpg)
+
+1. We have a sequence of inputs $(x_1, x_2, x_3, ..., x_n)$ and an initial hidden state $h_0$ that are consumed by the RNN model one-by-one producing corresponding hidden states $(h_1, h_2, h_3, ..., h_n)$. This is shown in the bottom part of the image
+2. Let's calculate the contex vector $c_1$ for the first sequence element. This is shown in the middle part of the image.
+    1. Let $f$ be some function s.t. $e_{ij} = f(h_i, h_j)$. Exact form/expression of $f$ is not necessary here, it can be anything, we just need a scalar out of $f$.
+    2. We get $e_{11}, e_{12}, e_{13}, ..., e_{1n}$ from  $f(h_1, h_1), f(h_1, h_2), f(h_1, h_3), ..., f(h_1, h_n)$ respectively.
+    3. This $e_{ij}$ is an unnormalized score of $h_i$ and $h_j$. Apply softmax over $e_{ij}$ to get $a_{ij}$, normalized score/weights. This will determine how much information from $h_j$ to include when calculating $c_i$.
+    
+
+
+
+
 
 
 
