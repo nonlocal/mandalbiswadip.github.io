@@ -1,4 +1,4 @@
-# Neural Machine Translation by Jointly Learning to Align and Translate
+# Attention Mechanisms in Deep Learning
 
 Review of the Attention paper.
 
