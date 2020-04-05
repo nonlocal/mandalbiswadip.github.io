@@ -71,20 +71,34 @@ The function $a$ here is an alignment model.
 
 One can think of $e_{ij}$ as the unnormalized weight/score given to $h_j$ while calculating the linear combination of all hidden states to obtain a context vector. The context vector is further used to obtain the decoder output at $i^{th}$ step. So, $a$ is a function (of $s_{i-1}$ and $h_j$) which learns how much weightage should be assigned to encoder hidden state $h_j$ when decoding $y_i$.
 
+## Attention Layer
+
 Let's take a closer look at the (self) attention/alignment model in the below diagram:
 
 ![attention mechanism](/images/attention_scaled_down.jpg)
 *Figure 1: Self-attention mechanism to calculate context vector for the first sequence element.*
 
-1. We have a sequence of inputs $(x_1, x_2, x_3, ..., x_n)$ and an initial hidden state $h_0$ that are consumed by the RNN model one-by-one producing corresponding hidden states $(h_1, h_2, h_3, ..., h_n)$. This is shown in the bottom part of the image
+1. We have a sequence of inputs $(x_1, x_2, x_3, ..., x_n)$ and an initial hidden state $h_0$ that are consumed by the RNN model one-by-one producing corresponding hidden states $(h_1, h_2, h_3, ..., h_n)$. This is shown in the bottom part of the image.
 2. Let's calculate the weights $a_{ij}$ needed to calculate the context vector. This is shown in the middle part of the image.
     1. Let $f$ be some function s.t. $e_{ij} = f(h_i, h_j)$. Exact form/expression of $f$ is not necessary here, it can be anything, we just need a scalar out of $f$.
     2. We get $e_{11}, e_{12}, e_{13}, ..., e_{1n}$ from  $f(h_1, h_1), f(h_1, h_2), f(h_1, h_3), ..., f(h_1, h_n)$ respectively.
-    3. This $e_{ij}$ is an unnormalized score/weight of $h_i$ and $h_j$. Take softmax of $e_{ij}$ for $j \in [1, n]$ to get $a_{ij}$, normalized score/weights : $a_{ij} = \frac{e_{ij}}{\sum_{j=1}^{T_{n}}e_{ij}}$. This will determine how much relative information from $h_j$ to include when calculating $c_i$.
-3. Now finally, with $a_{ij}$ as weights, we take weighted average of the hiddens states $(h_1, h_2, h_3, ..., h_n)$ to obtain the context vector, $c_i = \sum_{j=1}^{T_n} a_{ij}h_j$. This is in some sense an _expectation_ of hidden states $h_j$. This is depicted in the top part of the image under "Addition" step.
+    3. This $e_{ij}$ is an unnormalized score/weight of $h_i$ and $h_j$. Take softmax of $e_{ij}$ for $j \in [1, n]$ to get $a_{ij}$, normalized score/weight : $a_{ij} = \frac{e_{ij}}{\sum_{j=1}^{T_{n}}e_{ij}}$. This will determine how much relative information from $h_j$ to include when calculating $c_i$.
+3. Now finally, with $a_{ij}$ as weights, we take weighted average of the hidden states $(h_1, h_2, h_3, ..., h_n)$ to obtain the context vector, $c_i = \sum_{j=1}^{T_n} a_{ij}h_j$. This is in some sense an _expectation_ of hidden states $h_j$. This is depicted in the top part of the image under "Addition" step.
 
 
+This is a generic attention layer that can be put between any two layers where input is in the form of sequenes.
 
+Now, how does it apply to seq2seq models, MT in particular?
+
+For MT, one little change reproduces the attention model mentioned in the above paper. In the above figure, the blue $h1$ is an encoder hidden state, hence $c1$ self-attention context vector. If instead of encoder hidden state, we had the _decoder_ hidden state $h1$, then we could get the same attention model described in the paper.
+
+### Attention for MT
+
+We have input sequence $(x_1, x_2, x_3, ..., x_n)$ and their corresponding encoder hidden states be $(h_1, h_2, h_3, ..., h_n)$. Let $s_i$ be the _decoder_ hidden state at $i^{th}$ decoding step. Then the context vector $c_i$ that will be used to predict the word $y_i$ is given by:
+1. $e_{ij} = f(s_i, h_j)$, here $h_j$ is the encoder hidden state of the $j^{th}$ sequence input, $s_i$ is the decoder hidden state at the $i^{th}$ decoding step.
+2. We get $e_{11}, e_{12}, e_{13}, ..., e_{1n}$ from  $f(s_1, h_1), f(s_1, h_2), f(s_1, h_3), ..., f(s_1, h_n)$ respectively.
+3. These $e_{ij}$ are unnormalized scores/weights. Apply softmat to get normalized scores/weights: $a_{ij} = \frac{e_{ij}}{\sum_{j=1}^{T_{n}}e_{ij}}$.
+4. To calculate the context vector $c_i$ for the $i^{th}$ decoding step, with take average of encoder hidden states with $a_{ij}$ as weights: $c_i = \sum_{j=1}^{T_n} a_{ij}h_j$.
 
 
 
