@@ -76,11 +76,11 @@ Let's take a closer look at the (self) attention/alignment model in the below di
 ![attention mechanism](/images/attention_mechanism.jpg)
 
 1. We have a sequence of inputs $(x_1, x_2, x_3, ..., x_n)$ and an initial hidden state $h_0$ that are consumed by the RNN model one-by-one producing corresponding hidden states $(h_1, h_2, h_3, ..., h_n)$. This is shown in the bottom part of the image
-2. Let's calculate the contex vector $c_1$ for the first sequence element. This is shown in the middle part of the image.
+2. Let's calculate the weights $a_{ij}$ needed to calculate the context vector. This is shown in the middle part of the image.
     1. Let $f$ be some function s.t. $e_{ij} = f(h_i, h_j)$. Exact form/expression of $f$ is not necessary here, it can be anything, we just need a scalar out of $f$.
     2. We get $e_{11}, e_{12}, e_{13}, ..., e_{1n}$ from  $f(h_1, h_1), f(h_1, h_2), f(h_1, h_3), ..., f(h_1, h_n)$ respectively.
-    3. This $e_{ij}$ is an unnormalized score of $h_i$ and $h_j$. Apply softmax over $e_{ij}$ to get $a_{ij}$, normalized score/weights. This will determine how much information from $h_j$ to include when calculating $c_i$.
-    
+    3. This $e_{ij}$ is an unnormalized score/weight of $h_i$ and $h_j$. Take softmax of $e_{ij}$ for $j \in [1, n]$ to get $a_{ij}$, normalized score/weights : $a_{ij} = \frac{e_{ij}}{\sum_{j=1}^{T_{n}}e_{ij}}$. This will determine how much relative information from $h_j$ to include when calculating $c_i$.
+3. Now finally, with $a_{ij}$ as weights, we take weighted average of the hiddens states $(h_1, h_2, h_3, ..., h_n)$ to obtain the context vector, $c_i = \sum_{j=1}^{T_n} a_{ij}h_j$. This is in some sense an _expectation_ of hidden states $h_j$. This is depicted in the top part of the image under "Addition" step.
 
 
 
